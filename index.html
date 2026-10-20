@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caner Ozcan</title>
+<meta name="description" content="Caner Ozcan — production, real-time content and workflow design. Home of my web experiments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #E6E9EC;
+    --ink: #18202C;
+    --soft: #56606E;
+    --grid: #B3BBC5;
+    --cyan: #0B88A3;
+    --magenta: #BE2F67;
+    --line: #C9CFD6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1A212C;
+      --ink: #E9EDF2;
+      --soft: #A3ADBA;
+      --grid: #3A4555;
+      --cyan: #39B9D3;
+      --magenta: #E06495;
+      --line: #313B4A;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; border-radius: 2px; }
+
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+  /* Hero: projector alignment grid */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .hero canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .hero-text {
+    position: relative;
+    padding-bottom: clamp(48px, 10vh, 112px);
+    pointer-events: none;
+  }
+  h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(56px, 13vw, 184px);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+  }
+  .lede {
+    margin: 28px 0 0;
+    max-width: 30ch;
+    font-size: clamp(20px, 2.3vw, 28px);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .hint {
+    margin: 22px 0 0;
+    color: var(--soft);
+    font-size: 15px;
+  }
+
+  /* Sections */
+  section.block {
+    padding: clamp(72px, 12vh, 128px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .block-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  @media (min-width: 820px) {
+    .block-grid { grid-template-columns: 260px 1fr; gap: 48px; }
+  }
+  h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* Lab list */
+  .lab { list-style: none; margin: 0; padding: 0; }
+  .lab li { border-bottom: 1px solid var(--line); }
+  .lab li:first-child { border-top: 1px solid var(--line); }
+  .lab a, .lab .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px 24px;
+    padding: 22px 0;
+    text-decoration: none;
+  }
+  @media (min-width: 640px) {
+    .lab a, .lab .row { grid-template-columns: 1fr auto; align-items: baseline; }
+  }
+  .lab .name {
+    font-size: clamp(26px, 3.4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+  .lab .desc { color: var(--soft); max-width: 52ch; grid-column: 1; }
+  .lab .status {
+    font-size: 15px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); }
+  .dot.wip { background: transparent; border: 2px solid var(--magenta); }
+  .lab a .name { transition: color .2s; }
+  .lab a:hover .name { color: var(--cyan); }
+  @media (min-width: 640px) {
+    .lab .status { grid-column: 2; grid-row: 1; }
+  }
+
+  .about p { margin: 0 0 18px; max-width: 60ch; }
+  .about p:last-child { margin-bottom: 0; }
+
+  .contact-link {
+    font-size: clamp(28px, 4.6vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+    text-decoration-color: var(--cyan);
+    overflow-wrap: anywhere;
+  }
+  .contact-link:hover { color: var(--cyan); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 40px;
+    color: var(--soft);
+    font-size: 15px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lab a .name { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="grid" aria-hidden="true"></canvas>
+  <div class="wrap hero-text">
+    <h1>Caner<br>Ozcan</h1>
+    <p class="lede">I make tools and moving images for screens, stages and installations.</p>
+    <p class="hint" id="hint">Move your cursor to bend the grid.</p>
+  </div>
+</header>
+
+<main>
+  <section class="block" id="lab">
+    <div class="wrap block-grid">
+      <h2>Lab</h2>
+      <ul class="lab">
+        <li>
+          <a href="https://filmstack-numerik.vercel.app">
+            <span class="name">FilmStack</span>
+            <span class="status"><span class="dot"></span>Live</span>
+            <span class="desc">Create, preview and share Fujifilm film-simulation recipes, and sync them to the camera over USB.</span>
+          </a>
+        </li>
+        <li>
+          <div class="row">
+            <span class="name">Next experiment</span>
+            <span class="status"><span class="dot wip"></span>In progress</span>
+            <span class="desc">New web tools appear here as they reach a usable state.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block about" id="about">
+    <div class="wrap block-grid">
+      <h2>About</h2>
+      <div>
+        <p>I work across production, real-time and interactive content, and the workflows that hold it all together, for live events and permanent installations.</p>
+        <p>This site is where I try things out on the web: small apps, prototypes and tools I build for my own work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap block-grid">
+      <h2>Contact</h2>
+      <div>
+        <a class="contact-link" href="mailto:info@canerozcan.de">info@canerozcan.de</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Caner Ozcan</div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('grid');
+  var ctx = canvas.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch = window.matchMedia('(hover: none)').matches;
+  if (touch) document.getElementById('hint').textContent = 'Drag across the grid to bend it.';
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var W, H, dpr, cols, rows, step, pts;
+  var mouse = { x: -9999, y: -9999, active: false };
+  var t0 = performance.now();
+
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function setup() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    step = W < 640 ? 36 : 56;
+    cols = Math.ceil(W / step) + 2;
+    rows = Math.ceil(H / step) + 2;
+    var ox = (W - (cols - 1) * step) / 2, oy = (H - (rows - 1) * step) / 2;
+    pts = [];
+    for (var j = 0; j < rows; j++) {
+      for (var i = 0; i < cols; i++) {
+        var x = ox + i * step, y = oy + j * step;
+        pts.push({ bx: x, by: y, x: x, y: y });
+      }
+    }
+  }
+
+  function update(now) {
+    var R = Math.max(W, H) * 0.28;
+    var t = (now - t0) / 1000;
+    for (var k = 0; k < pts.length; k++) {
+      var p = pts[k], tx = p.bx, ty = p.by;
+      if (mouse.active) {
+        var dx = p.bx - mouse.x, dy = p.by - mouse.y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < R) {
+          var f = Math.pow(1 - d / R, 2) * 0.55;
+          tx -= dx * f; ty -= dy * f;
+        }
+      } else if (!reduce) {
+        // idle: slow keystone drift, like a projector settling
+        var s = Math.sin(t * 0.6) * 0.035;
+        var cx = W / 2, cy = H / 2;
+        var ny = (p.by - cy) / H;
+        tx = cx + (p.bx - cx) * (1 + s * ny * 2);
+        ty = p.by + Math.sin(t * 0.8 + p.bx / 240) * 3;
+      }
+      if (reduce) { p.x = tx; p.y = ty; }
+      else { p.x += (tx - p.x) * 0.12; p.y += (ty - p.y) * 0.12; }
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var gridC = css('--grid'), cyan = css('--cyan'), mag = css('--magenta');
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = gridC;
+    ctx.beginPath();
+    for (var j = 0; j < rows; j++) {
+      for (var i = 0; i < cols; i++) {
+        var p = pts[j * cols + i];
+        if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+      }
+    }
+    for (var i2 = 0; i2 < cols; i2++) {
+      for (var j2 = 0; j2 < rows; j2++) {
+        var q = pts[j2 * cols + i2];
+        if (j2 === 0) ctx.moveTo(q.x, q.y); else ctx.lineTo(q.x, q.y);
+      }
+    }
+    ctx.stroke();
+
+    // displaced intersections light up in cyan
+    ctx.fillStyle = cyan;
+    for (var k = 0; k < pts.length; k++) {
+      var p2 = pts[k];
+      var m = Math.abs(p2.x - p2.bx) + Math.abs(p2.y - p2.by);
+      if (m > 4) {
+        var r = Math.min(3.2, 1 + m / 20);
+        ctx.beginPath(); ctx.arc(p2.x, p2.y, r, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+
+    // registration marks at the corners
+    ctx.strokeStyle = mag; ctx.lineWidth = 1.5;
+    var pad = W < 640 ? 18 : 32, len = 18, rr = 7;
+    [[pad, pad], [W - pad, pad], [pad, H - pad], [W - pad, H - pad]].forEach(function (c) {
+      ctx.beginPath();
+      ctx.moveTo(c[0] - len, c[1]); ctx.lineTo(c[0] + len, c[1]);
+      ctx.moveTo(c[0], c[1] - len); ctx.lineTo(c[0], c[1] + len);
+      ctx.stroke();
+      ctx.beginPath(); ctx.arc(c[0], c[1], rr, 0, Math.PI * 2); ctx.stroke();
+    });
+  }
+
+  function frame(now) {
+    update(now); draw();
+    if (!reduce) requestAnimationFrame(frame);
+  }
+
+  function setPointer(e) {
+    var r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
+    if (reduce) { update(performance.now()); draw(); }
+  }
+  function clearPointer() {
+    mouse.active = false;
+    if (reduce) { update(performance.now()); draw(); }
+  }
+  var hero = canvas.parentElement;
+  hero.addEventListener('pointermove', setPointer);
+  hero.addEventListener('pointerdown', setPointer);
+  hero.addEventListener('pointerleave', clearPointer);
+  hero.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse') clearPointer(); });
+  window.addEventListener('resize', function () { setup(); if (reduce) draw(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { if (reduce) draw(); });
+
+  setup();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
