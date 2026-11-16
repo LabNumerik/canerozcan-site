@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Caner Ozcan</title>
-<meta name="description" content="Caner Ozcan — production, real-time content and workflow design. Home of my web experiments.">
+<meta name="description" content="Caner Ozcan shapes light for rooms, stages and screens, and the systems that carry it there.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -105,44 +105,16 @@
     letter-spacing: -0.01em;
   }
 
-  /* Lab list */
-  .lab { list-style: none; margin: 0; padding: 0; }
-  .lab li { border-bottom: 1px solid var(--line); }
-  .lab li:first-child { border-top: 1px solid var(--line); }
-  .lab a, .lab .row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4px 24px;
-    padding: 22px 0;
-    text-decoration: none;
-  }
-  @media (min-width: 640px) {
-    .lab a, .lab .row { grid-template-columns: 1fr auto; align-items: baseline; }
-  }
-  .lab .name {
-    font-size: clamp(26px, 3.4vw, 40px);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-  }
-  .lab .desc { color: var(--soft); max-width: 52ch; grid-column: 1; }
-  .lab .status {
-    font-size: 15px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-  }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); }
-  .dot.wip { background: transparent; border: 2px solid var(--magenta); }
-  .lab a .name { transition: color .2s; }
-  .lab a:hover .name { color: var(--cyan); }
-  @media (min-width: 640px) {
-    .lab .status { grid-column: 2; grid-row: 1; }
-  }
 
-  .about p { margin: 0 0 18px; max-width: 60ch; }
+  .about p {
+    margin: 0 0 26px;
+    max-width: 34ch;
+    font-size: clamp(22px, 2.6vw, 34px);
+    line-height: 1.28;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+  }
+  .about p:nth-child(2) { color: var(--soft); }
   .about p:last-child { margin-bottom: 0; }
 
   .contact-link {
@@ -164,9 +136,6 @@
     font-size: 15px;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .lab a .name { transition: none; }
-  }
 </style>
 </head>
 <body>
@@ -175,40 +144,20 @@
   <canvas id="grid" aria-hidden="true"></canvas>
   <div class="wrap hero-text">
     <h1>Caner<br>Ozcan</h1>
-    <p class="lede">I make tools and moving images for screens, stages and installations.</p>
+    <p class="lede">I shape light for rooms, stages and screens, and the quiet systems that carry it there.</p>
     <p class="hint" id="hint">Move your cursor to bend the grid.</p>
   </div>
 </header>
 
 <main>
-  <section class="block" id="lab">
-    <div class="wrap block-grid">
-      <h2>Lab</h2>
-      <ul class="lab">
-        <li>
-          <a href="https://filmstack.canerozcan.com">
-            <span class="name">FilmStack</span>
-            <span class="status"><span class="dot"></span>Live</span>
-            <span class="desc">Create, preview and share Fujifilm film-simulation recipes, and sync them to the camera over USB.</span>
-          </a>
-        </li>
-        <li>
-          <div class="row">
-            <span class="name">Next experiment</span>
-            <span class="status"><span class="dot wip"></span>In progress</span>
-            <span class="desc">New web tools appear here as they reach a usable state.</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
 
   <section class="block about" id="about">
     <div class="wrap block-grid">
       <h2>About</h2>
       <div>
-        <p>I work across production, real-time and interactive content, and the workflows that hold it all together, for live events and permanent installations.</p>
-        <p>This site is where I try things out on the web: small apps, prototypes and tools I build for my own work.</p>
+        <p>Most of my work begins in the dark: an empty hall, a black box, a wall that has never held an image.</p>
+        <p>I live between the picture and the pipeline, shaping moving images for live events and permanent spaces, and building the workflows that let them arrive on time, on every surface.</p>
+        <p>Like the grid above, everything starts as a calibration. Lines bend until the light fits the room.</p>
       </div>
     </div>
   </section>
