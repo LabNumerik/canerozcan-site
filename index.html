@@ -4,301 +4,122 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Caner Ozcan</title>
-<meta name="description" content="Hi, I'm Caner. I make things glow on screens, stages and the occasional wall.">
+<meta name="description" content="Hi, I'm Caner. I make things glow on screens, walls and the occasional stage.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #E6E9EC;
+    --bg: #F1F4F6;
     --ink: #18202C;
-    --soft: #56606E;
-    --grid: #B3BBC5;
-    --cyan: #0B88A3;
-    --magenta: #BE2F67;
-    --line: #C9CFD6;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #1A212C;
-      --ink: #E9EDF2;
-      --soft: #A3ADBA;
-      --grid: #3A4555;
-      --cyan: #39B9D3;
-      --magenta: #E06495;
-      --line: #313B4A;
-    }
+    --soft: #4E5967;
+    --glow: #F5B83D;
+    --link-hover: #0B6E85;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html, body { height: 100%; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
     font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 18px;
-    line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
   }
   a { color: inherit; }
-  a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; border-radius: 2px; }
+  a:hover { color: var(--link-hover); }
+  a:focus-visible { outline: 2px solid var(--link-hover); outline-offset: 4px; border-radius: 2px; }
 
-  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
-
-  /* Hero: projector alignment grid */
-  .hero {
-    position: relative;
+  .page {
     min-height: 100svh;
+    width: min(1280px, 100% - 32px);
+    margin-inline: auto;
+    padding: clamp(24px, 5vh, 48px) 0 clamp(32px, 7vh, 64px);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
+    justify-content: space-between;
+    gap: 64px;
   }
-  .hero canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
+  @media (min-width: 720px) {
+    .page { width: min(1280px, 100% - 160px); }
   }
-  .hero-text {
-    position: relative;
-    padding-bottom: clamp(48px, 10vh, 112px);
-    pointer-events: none;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 17px;
   }
+  .name { font-weight: 700; }
+  .hello { text-decoration: none; font-weight: 500; }
+
+  .intro { display: flex; flex-direction: column; gap: clamp(28px, 4vh, 40px); }
   h1 {
     margin: 0;
-    font-weight: 800;
-    font-size: clamp(56px, 13vw, 184px);
-    line-height: 0.88;
-    letter-spacing: -0.045em;
-  }
-  .lede {
-    margin: 28px 0 0;
-    max-width: 30ch;
-    font-size: clamp(20px, 2.3vw, 28px);
-    line-height: 1.3;
+    max-width: 22ch;
+    font-size: clamp(36px, 4.4vw, 64px);
+    line-height: 1.1;
     font-weight: 500;
-  }
-  .hint {
-    margin: 22px 0 0;
-    color: var(--soft);
-    font-size: 15px;
-  }
-
-  /* Sections */
-  section.block {
-    padding: clamp(72px, 12vh, 128px) 0;
-    border-top: 1px solid var(--line);
-  }
-  .block-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  @media (min-width: 820px) {
-    .block-grid { grid-template-columns: 260px 1fr; gap: 48px; }
-  }
-  h2 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-
-  .about p {
-    margin: 0 0 20px;
-    max-width: 44ch;
-    font-size: clamp(19px, 1.9vw, 24px);
-    line-height: 1.45;
-  }
-  .about p:last-child { margin-bottom: 0; }
-  .about p:last-child { margin-bottom: 0; }
-
-  .contact-link {
-    font-size: clamp(28px, 4.6vw, 56px);
-    font-weight: 700;
     letter-spacing: -0.03em;
-    line-height: 1.05;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 8px;
-    text-decoration-color: var(--cyan);
-    overflow-wrap: anywhere;
   }
-  .contact-link:hover { color: var(--cyan); }
-
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 28px 0 40px;
+  .line {
+    height: 3px;
+    border-radius: 3px;
+    background: var(--glow);
+    box-shadow: 0 0 18px 3px color-mix(in srgb, var(--glow) 50%, transparent);
+    transform-origin: left center;
+    animation: switch-on 1.4s cubic-bezier(.2,.7,.2,1) .2s both;
+  }
+  @keyframes switch-on {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px 48px;
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.5;
     color: var(--soft);
-    font-size: 15px;
   }
+  .meta p { margin: 0; }
+  .work { max-width: 52ch; }
+  .time { white-space: nowrap; font-variant-numeric: tabular-nums; }
 
+  @media (prefers-reduced-motion: reduce) {
+    .line { animation: none; }
+  }
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <canvas id="grid" aria-hidden="true"></canvas>
-  <div class="wrap hero-text">
-    <h1>Caner<br>Ozcan</h1>
-    <p class="lede">Hi, I'm Caner. I make things glow on screens, stages and the occasional wall.</p>
-    <p class="hint" id="hint">Go on, give the grid a nudge with your cursor.</p>
-  </div>
-</header>
-
-<main>
-
-  <section class="block about" id="about">
-    <div class="wrap block-grid">
-      <h2>About</h2>
-      <div>
-        <p>I work in production and real-time content: the bright, moving stuff behind live events, shows and installations.</p>
-        <p>Most days that means juggling schedules, pixels and people until everything switches on at the same moment. Other days it means building small tools, just because they're fun to make.</p>
-        <p>Got a project, a question, or just want to say hi? My inbox is open.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="contact">
-    <div class="wrap block-grid">
-      <h2>Say hello</h2>
-      <div>
-        <a class="contact-link" href="mailto:info@canerozcan.de">info@canerozcan.de</a>
-      </div>
+<main class="page">
+  <header>
+    <span class="name">Caner Ozcan</span>
+    <a class="hello" href="mailto:info@canerozcan.de">Say hello</a>
+  </header>
+  <section class="intro">
+    <h1>Hi, I'm Caner. I make things glow on screens, walls and the occasional stage.</h1>
+    <div class="line" aria-hidden="true"></div>
+    <div class="meta">
+      <p class="work">Production and real-time content: juggling schedules, pixels and people until everything switches on at the same moment.</p>
+      <p class="time">It's <span id="clock">--:--</span> here (<span id="zone">CET</span>)</p>
     </div>
   </section>
 </main>
-
-<footer>
-  <div class="wrap">© <span id="year">2026</span> Caner Ozcan</div>
-</footer>
-
 <script>
 (function () {
-  var canvas = document.getElementById('grid');
-  var ctx = canvas.getContext('2d');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var touch = window.matchMedia('(hover: none)').matches;
-  if (touch) document.getElementById('hint').textContent = 'Go on, drag across the grid.';
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  var W, H, dpr, cols, rows, step, pts;
-  var mouse = { x: -9999, y: -9999, active: false };
-  var t0 = performance.now();
-
-  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-
-  function setup() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = canvas.clientWidth; H = canvas.clientHeight;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    step = W < 640 ? 36 : 56;
-    cols = Math.ceil(W / step) + 2;
-    rows = Math.ceil(H / step) + 2;
-    var ox = (W - (cols - 1) * step) / 2, oy = (H - (rows - 1) * step) / 2;
-    pts = [];
-    for (var j = 0; j < rows; j++) {
-      for (var i = 0; i < cols; i++) {
-        var x = ox + i * step, y = oy + j * step;
-        pts.push({ bx: x, by: y, x: x, y: y });
-      }
-    }
+  var clock = document.getElementById('clock');
+  var zone = document.getElementById('zone');
+  function tick() {
+    var now = new Date();
+    clock.textContent = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit' });
+    var parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Berlin', timeZoneName: 'short' }).formatToParts(now);
+    var tz = parts.find(function (p) { return p.type === 'timeZoneName'; });
+    zone.textContent = tz && /^CES?T$/.test(tz.value) ? tz.value : (tz && tz.value === 'GMT+2' ? 'CEST' : 'CET');
   }
-
-  function update(now) {
-    var R = Math.max(W, H) * 0.28;
-    var t = (now - t0) / 1000;
-    for (var k = 0; k < pts.length; k++) {
-      var p = pts[k], tx = p.bx, ty = p.by;
-      if (mouse.active) {
-        var dx = p.bx - mouse.x, dy = p.by - mouse.y;
-        var d = Math.sqrt(dx * dx + dy * dy);
-        if (d < R) {
-          var f = Math.pow(1 - d / R, 2) * 0.55;
-          tx -= dx * f; ty -= dy * f;
-        }
-      } else if (!reduce) {
-        // idle: slow keystone drift, like a projector settling
-        var s = Math.sin(t * 0.6) * 0.035;
-        var cx = W / 2, cy = H / 2;
-        var ny = (p.by - cy) / H;
-        tx = cx + (p.bx - cx) * (1 + s * ny * 2);
-        ty = p.by + Math.sin(t * 0.8 + p.bx / 240) * 3;
-      }
-      if (reduce) { p.x = tx; p.y = ty; }
-      else { p.x += (tx - p.x) * 0.12; p.y += (ty - p.y) * 0.12; }
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    var gridC = css('--grid'), cyan = css('--cyan'), mag = css('--magenta');
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = gridC;
-    ctx.beginPath();
-    for (var j = 0; j < rows; j++) {
-      for (var i = 0; i < cols; i++) {
-        var p = pts[j * cols + i];
-        if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
-      }
-    }
-    for (var i2 = 0; i2 < cols; i2++) {
-      for (var j2 = 0; j2 < rows; j2++) {
-        var q = pts[j2 * cols + i2];
-        if (j2 === 0) ctx.moveTo(q.x, q.y); else ctx.lineTo(q.x, q.y);
-      }
-    }
-    ctx.stroke();
-
-    // displaced intersections light up in cyan
-    ctx.fillStyle = cyan;
-    for (var k = 0; k < pts.length; k++) {
-      var p2 = pts[k];
-      var m = Math.abs(p2.x - p2.bx) + Math.abs(p2.y - p2.by);
-      if (m > 4) {
-        var r = Math.min(3.2, 1 + m / 20);
-        ctx.beginPath(); ctx.arc(p2.x, p2.y, r, 0, Math.PI * 2); ctx.fill();
-      }
-    }
-
-    // registration marks at the corners
-    ctx.strokeStyle = mag; ctx.lineWidth = 1.5;
-    var pad = W < 640 ? 18 : 32, len = 18, rr = 7;
-    [[pad, pad], [W - pad, pad], [pad, H - pad], [W - pad, H - pad]].forEach(function (c) {
-      ctx.beginPath();
-      ctx.moveTo(c[0] - len, c[1]); ctx.lineTo(c[0] + len, c[1]);
-      ctx.moveTo(c[0], c[1] - len); ctx.lineTo(c[0], c[1] + len);
-      ctx.stroke();
-      ctx.beginPath(); ctx.arc(c[0], c[1], rr, 0, Math.PI * 2); ctx.stroke();
-    });
-  }
-
-  function frame(now) {
-    update(now); draw();
-    if (!reduce) requestAnimationFrame(frame);
-  }
-
-  function setPointer(e) {
-    var r = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
-    if (reduce) { update(performance.now()); draw(); }
-  }
-  function clearPointer() {
-    mouse.active = false;
-    if (reduce) { update(performance.now()); draw(); }
-  }
-  var hero = canvas.parentElement;
-  hero.addEventListener('pointermove', setPointer);
-  hero.addEventListener('pointerdown', setPointer);
-  hero.addEventListener('pointerleave', clearPointer);
-  hero.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse') clearPointer(); });
-  window.addEventListener('resize', function () { setup(); if (reduce) draw(); });
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { if (reduce) draw(); });
-
-  setup();
-  requestAnimationFrame(frame);
+  tick();
+  setInterval(tick, 30000);
 })();
 </script>
 </body>
