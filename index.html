@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Caner Ozcan</title>
-<meta name="description" content="Caner Ozcan shapes light for rooms, stages and screens, and the systems that carry it there.">
+<meta name="description" content="Hi, I'm Caner. I make things glow on screens, stages and the occasional wall.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -107,14 +107,12 @@
 
 
   .about p {
-    margin: 0 0 26px;
-    max-width: 34ch;
-    font-size: clamp(22px, 2.6vw, 34px);
-    line-height: 1.28;
-    font-weight: 500;
-    letter-spacing: -0.012em;
+    margin: 0 0 20px;
+    max-width: 44ch;
+    font-size: clamp(19px, 1.9vw, 24px);
+    line-height: 1.45;
   }
-  .about p:nth-child(2) { color: var(--soft); }
+  .about p:last-child { margin-bottom: 0; }
   .about p:last-child { margin-bottom: 0; }
 
   .contact-link {
@@ -144,8 +142,8 @@
   <canvas id="grid" aria-hidden="true"></canvas>
   <div class="wrap hero-text">
     <h1>Caner<br>Ozcan</h1>
-    <p class="lede">I shape light for rooms, stages and screens, and the quiet systems that carry it there.</p>
-    <p class="hint" id="hint">Move your cursor to bend the grid.</p>
+    <p class="lede">Hi, I'm Caner. I make things glow on screens, stages and the occasional wall.</p>
+    <p class="hint" id="hint">Go on, give the grid a nudge with your cursor.</p>
   </div>
 </header>
 
@@ -155,16 +153,16 @@
     <div class="wrap block-grid">
       <h2>About</h2>
       <div>
-        <p>Most of my work begins in the dark: an empty hall, a black box, a wall that has never held an image.</p>
-        <p>I live between the picture and the pipeline, shaping moving images for live events and permanent spaces, and building the workflows that let them arrive on time, on every surface.</p>
-        <p>Like the grid above, everything starts as a calibration. Lines bend until the light fits the room.</p>
+        <p>I work in production and real-time content: the bright, moving stuff behind live events, shows and installations.</p>
+        <p>Most days that means juggling schedules, pixels and people until everything switches on at the same moment. Other days it means building small tools, just because they're fun to make.</p>
+        <p>Got a project, a question, or just want to say hi? My inbox is open.</p>
       </div>
     </div>
   </section>
 
   <section class="block" id="contact">
     <div class="wrap block-grid">
-      <h2>Contact</h2>
+      <h2>Say hello</h2>
       <div>
         <a class="contact-link" href="mailto:info@canerozcan.de">info@canerozcan.de</a>
       </div>
@@ -182,7 +180,7 @@
   var ctx = canvas.getContext('2d');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var touch = window.matchMedia('(hover: none)').matches;
-  if (touch) document.getElementById('hint').textContent = 'Drag across the grid to bend it.';
+  if (touch) document.getElementById('hint').textContent = 'Go on, drag across the grid.';
   document.getElementById('year').textContent = new Date().getFullYear();
 
   var W, H, dpr, cols, rows, step, pts;
